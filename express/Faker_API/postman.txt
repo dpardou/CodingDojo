@@ -1,0 +1,126 @@
+Solicitud GET Nº 1:
+
+http://localhost:8000/api/users/new
+
+Respuesta:
+
+1.-
+{
+    "run": 55177823,
+    "firstName": "Fleta",
+    "lastName": "Parker",
+    "phoneNumber": "1-335-559-6721 x465",
+    "email": "Breanne.Nikolaus@gmail.com",
+    "password": "Tl38eh31ie49fnD"
+}
+
+2.-
+{
+    "run": 53296390,
+    "firstName": "Toby",
+    "lastName": "Wyman",
+    "phoneNumber": "265.434.8612",
+    "email": "Francisca_Zemlak45@yahoo.com",
+    "password": "9nwzNNtexw0Z4m4"
+}
+3.-
+{
+    "run": 65956591,
+    "firstName": "Lempi",
+    "lastName": "Ratke",
+    "phoneNumber": "1-373-833-2277 x837",
+    "email": "Jadyn31@yahoo.com",
+    "password": "qzrJBvXDzvDEfn1"
+}
+
+---------------------
+
+Solicitud GET Nº 2:
+
+http://localhost:8000/api/companies/new
+
+Respuesta:
+
+1.-
+{
+    "rut": 52208980,
+    "nameCompany": "Collier, Auer and Bashirian",
+    "Address": "Kadin Burgs - Skilesbury - Connecticut - 25390 - Burkina Faso"
+}
+
+2.-
+{
+    "rut": 65176876,
+    "nameCompany": "Sanford and Sons",
+    "Address": "Kacey Route - Conway - Nevada - 41311-5592 - Nepal"
+}
+3.-
+{
+    "rut": 68445060,
+    "nameCompany": "Batz, Rogahn and Connelly",
+    "Address": "Lorenz Canyon - South Osvaldoville - Alabama - 21500 - Sierra Leone"
+}
+
+---------------------
+
+Solicitud GET Nº 3:
+
+http://localhost:8000/api/user/company
+
+Respuesta:
+
+1.-
+{
+    "user": {
+        "run": 54344946,
+        "firstName": "Oma",
+        "lastName": "Lakin",
+        "phoneNumber": "1-219-214-0341 x1637",
+        "email": "Geovany_Connelly@hotmail.com",
+        "password": "VT3zD0cuFloyJ4k"
+    },
+    "company": {
+        "rut": 60954360,
+        "nameCompany": "Hintz LLC",
+        "Address": "Larissa Tunnel - Pomona - Pennsylvania - 92621 - Turks and Caicos Islands"
+    }
+}
+
+2.-
+{
+    "user": {
+        "run": 69180435,
+        "firstName": "Amalia",
+        "lastName": "Emard",
+        "phoneNumber": "1-743-859-7018 x601",
+        "email": "Ubaldo20@gmail.com",
+        "password": "Y6TOzGeFHK9lrsb"
+    },
+    "company": {
+        "rut": 57125042,
+        "nameCompany": "Parisian, Shanahan and Jerde",
+        "Address": "Braden Rapid - East Reedton - Connecticut - 23159 - Maldives"
+    }
+}
+
+3.-
+{
+    "user": {
+        "run": 68365924,
+        "firstName": "Gudrun",
+        "lastName": "Roob",
+        "phoneNumber": "(514) 395-5488",
+        "email": "Price83@hotmail.com",
+        "password": "UkE70shJGM4ZtYJ"
+    },
+    "company": {
+        "rut": 62665586,
+        "nameCompany": "Gulgowski and Sons",
+        "Address": "Howe Cove - Skilesville - Massachusetts - 84859 - Niue"
+    }
+}
+---------------------
+
+
+
+
