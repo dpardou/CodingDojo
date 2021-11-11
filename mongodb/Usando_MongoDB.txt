@@ -1,0 +1,390 @@
+- Cree una base de datos llamada 'my_first_db'.
+
+use my_first_db
+
+
+- Crear colección de estudiantes.
+
+db.createCollection("estudiantes")
+
+
+- Cada documento que inserte en esta colección debe tener el siguiente formato:({name: STRING, home_state: STRING, lucky_number: NUMBER, birthday: {month: NUMBER, day: NUMBER, year: NUMBER}})
+
+db.estudiantes.insert({name: "David", home_state: "Chile", lucky_number: 7, birthday: {month: 7, day: 16, year: 1982}})
+db.estudiantes.insert({name: "Francisco", home_state: "California", lucky_number: 21, birthday: {month: 9, day: 2, year: 1979}})
+db.estudiantes.insert({name: "Miguel", home_state: "Washington", lucky_number: 10, birthday: {month: 2, day: 23, year: 1985}})
+db.estudiantes.insert({name: "Santiago", home_state: "California", lucky_number: 1, birthday: {month: 11, day: 9, year: 1982}})
+db.estudiantes.insert({name: "Diego", home_state: "Washington", lucky_number: 14, birthday: {month: 12, day: 24, year: 1975}})
+
+
+- Crea 5 estudiantes con la información adecuada.
+
+db.estudiantes.insert({name: "David", home_state: "Chile", lucky_number: 7, birthday: {month: 7, day: 16, year: 1982}})
+db.estudiantes.insert({name: "Francisco", home_state: "California", lucky_number: 21, birthday: {month: 9, day: 2, year: 1979}})
+db.estudiantes.insert({name: "Miguel", home_state: "Washington", lucky_number: 10, birthday: {month: 2, day: 23, year: 1985}})
+db.estudiantes.insert({name: "Santiago", home_state: "California", lucky_number: 1, birthday: {month: 11, day: 9, year: 1982}})
+db.estudiantes.insert({name: "Diego", home_state: "Washington", lucky_number: 14, birthday: {month: 12, day: 24, year: 1975}})
+
+- Consigue todos los estudiantes.
+
+db.estudiantes.find().pretty()
+{
+	"_id" : ObjectId("618c4892dd0eb674a34189db"),
+	"name" : "David",
+	"home_state" : "Chile",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 7,
+		"day" : 16,
+		"year" : 1982
+	}
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dc"),
+	"name" : "Miguel",
+	"home_state" : "Washington",
+	"lucky_number" : 10,
+	"birthday" : {
+		"month" : 2,
+		"day" : 23,
+		"year" : 1985
+	}
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dd"),
+	"name" : "Santiago",
+	"home_state" : "California",
+	"lucky_number" : 1,
+	"birthday" : {
+		"month" : 11,
+		"day" : 9,
+		"year" : 1982
+	}
+}
+{
+	"_id" : ObjectId("618c48cddd0eb674a34189de"),
+	"name" : "Diego",
+	"home_state" : "Washington",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 12,
+		"day" : 24,
+		"year" : 1975
+	}
+}
+{
+	"_id" : ObjectId("618c494add0eb674a34189e1"),
+	"name" : "Francisco",
+	"home_state" : "California",
+	"lucky_number" : 21,
+	"birthday" : {
+		"month" : 9,
+		"day" : 2,
+		"year" : 1979
+	}
+}
+
+
+- Recupera a todos los estudiantes que son de California (San Jose Dojo) o Washington (Seattle Dojo).
+
+db.estudiantes.find({$or: [{home_state:"California"}, {home_state: "Washington"}]}).pretty()
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dc"),
+	"name" : "Miguel",
+	"home_state" : "Washington",
+	"lucky_number" : 10,
+	"birthday" : {
+		"month" : 2,
+		"day" : 23,
+		"year" : 1985
+	}
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dd"),
+	"name" : "Santiago",
+	"home_state" : "California",
+	"lucky_number" : 1,
+	"birthday" : {
+		"month" : 11,
+		"day" : 9,
+		"year" : 1982
+	}
+}
+{
+	"_id" : ObjectId("618c48cddd0eb674a34189de"),
+	"name" : "Diego",
+	"home_state" : "Washington",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 12,
+		"day" : 24,
+		"year" : 1975
+	}
+}
+{
+	"_id" : ObjectId("618c494add0eb674a34189e1"),
+	"name" : "Francisco",
+	"home_state" : "California",
+	"lucky_number" : 21,
+	"birthday" : {
+		"month" : 9,
+		"day" : 2,
+		"year" : 1979
+	}
+}
+
+
+- Obten todos los estudiantes cuyo número de la suerte sea mayor que 3
+
+db.estudiantes.find({lucky_number:{$gt:3}}).pretty()
+{
+	"_id" : ObjectId("618c4892dd0eb674a34189db"),
+	"name" : "David",
+	"home_state" : "Chile",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 7,
+		"day" : 16,
+		"year" : 1982
+	}
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dc"),
+	"name" : "Miguel",
+	"home_state" : "Washington",
+	"lucky_number" : 10,
+	"birthday" : {
+		"month" : 2,
+		"day" : 23,
+		"year" : 1985
+	}
+}
+{
+	"_id" : ObjectId("618c48cddd0eb674a34189de"),
+	"name" : "Diego",
+	"home_state" : "Washington",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 12,
+		"day" : 24,
+		"year" : 1975
+	}
+}
+{
+	"_id" : ObjectId("618c494add0eb674a34189e1"),
+	"name" : "Francisco",
+	"home_state" : "California",
+	"lucky_number" : 21,
+	"birthday" : {
+		"month" : 9,
+		"day" : 2,
+		"year" : 1979
+	}
+}
+
+- Obten todos los estudiantes cuyo número de la suerte sea menor o igual a 10
+
+db.estudiantes.find({lucky_number:{$lte:10}}).pretty()
+{
+	"_id" : ObjectId("618c4892dd0eb674a34189db"),
+	"name" : "David",
+	"home_state" : "Chile",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 7,
+		"day" : 16,
+		"year" : 1982
+	}
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dc"),
+	"name" : "Miguel",
+	"home_state" : "Washington",
+	"lucky_number" : 10,
+	"birthday" : {
+		"month" : 2,
+		"day" : 23,
+		"year" : 1985
+	}
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dd"),
+	"name" : "Santiago",
+	"home_state" : "California",
+	"lucky_number" : 1,
+	"birthday" : {
+		"month" : 11,
+		"day" : 9,
+		"year" : 1982
+	}
+}
+
+- Obten todos los estudiantes cuyo número de la suerte esté entre 1 y 9 (inclusive)
+
+db.estudiantes.find({$and: [{lucky_number:{$gt:1}}, {lucky_number:{$lte:9}}]}).pretty()
+{
+	"_id" : ObjectId("618c4892dd0eb674a34189db"),
+	"name" : "David",
+	"home_state" : "Chile",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 7,
+		"day" : 16,
+		"year" : 1982
+	}
+}
+
+- Agrega un campo a cada colección de estudiantes llamado 'intereses' que es un ARRAY. Debe contener las siguientes entradas: 'codificación', 'brunch', 'MongoDB'. Haz esto en UNA operación.
+
+db.estudiantes.updateMany({},{$set:{interest: ["codificación", "brunch", "MongoDB"]}})
+
+{
+	"_id" : ObjectId("618c4892dd0eb674a34189db"),
+	"name" : "David",
+	"home_state" : "Chile",
+	"lucky_number" : 7,
+	"birthday" : {
+		"month" : 7,
+		"day" : 16,
+		"year" : 1982
+	},
+	"interest" : [
+		"codificación",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dc"),
+	"name" : "Miguel",
+	"home_state" : "Washington",
+	"lucky_number" : 10,
+	"birthday" : {
+		"month" : 2,
+		"day" : 23,
+		"year" : 1985
+	},
+	"interest" : [
+		"codificación",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("618c48cadd0eb674a34189dd"),
+	"name" : "Santiago",
+	"home_state" : "California",
+	"lucky_number" : 1,
+	"birthday" : {
+		"month" : 11,
+		"day" : 9,
+		"year" : 1982
+	},
+	"interest" : [
+		"codificación",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("618c48cddd0eb674a34189de"),
+	"name" : "Diego",
+	"home_state" : "Washington",
+	"lucky_number" : 14,
+	"birthday" : {
+		"month" : 12,
+		"day" : 24,
+		"year" : 1975
+	},
+	"interest" : [
+		"codificación",
+		"brunch",
+		"MongoDB"
+	]
+}
+{
+	"_id" : ObjectId("618c494add0eb674a34189e1"),
+	"name" : "Francisco",
+	"home_state" : "California",
+	"lucky_number" : 21,
+	"birthday" : {
+		"month" : 9,
+		"day" : 2,
+		"year" : 1979
+	},
+	"interest" : [
+		"codificación",
+		"brunch",
+		"MongoDB"
+	]
+}
+
+
+- Agrega algunos intereses únicos para cada estudiante en particular en cada una de sus matrices de intereses.
+
+db.estudiantes.update({_id: ObjectId("618c494add0eb674a34189e1")}, {$push: {interest: 'snowboarding'}})
+
+{
+	"_id" : ObjectId("618c494add0eb674a34189e1"),
+	"name" : "Francisco",
+	"home_state" : "California",
+	"lucky_number" : 21,
+	"birthday" : {
+		"month" : 9,
+		"day" : 2,
+		"year" : 1979
+	},
+	"interest" : [
+		"codificación",
+		"brunch",
+		"MongoDB",
+		"snowboarding"
+	]
+}
+
+- Agrega los 'impuestos' de intereses a la matriz de intereses de alguien.
+
+NO SE ENTIENDE
+
+- Elimina los intereses de 'impuestos' que acaba de agregar.
+
+NO SE ENTIENDE
+
+- Eliminar a todos los estudiantes que son de California.
+
+db.estudiantes.deleteMany({"home_state" : "California"})
+{ "acknowledged" : true, "deletedCount" : 2 }
+
+
+- Eliminar a un alumno por su nombre.
+
+db.estudiantes.remove({"name" : "Miguel"})
+WriteResult({ "nRemoved" : 1 })
+
+- Retira a un estudiante cuyo número de la suerte sea mayor que 5 (SOLO UNO)
+
+db.estudiantes.remove({"lucky_number" : {$gt:5}}, true)
+WriteResult({ "nRemoved" : 1 })
+
+- Agrega un campo a cada colección de estudiantes llamado 'number_of_belts' y configúralo en 0.
+
+db.estudiantes.updateMany({},{$set:{number_of_belts: 0}})
+
+- Incrementa este campo en 1 para todos los estudiantes en Washington (Seattle Dojo).
+
+db.estudiantes.updateMany({"home_state" : "Washington"},{$set:{number_of_belts: 1}})
+
+- Cambia el nombre del campo 'number_of_belts' a 'belts_earned'
+
+db.estudiantes.update({}, {$rename:{"number_of_belts":"belts_earned"}}, {multi:true})
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+
+- Elimina el campo 'lucky_number'.
+
+db.estudiantes.update({}, {$unset: {lucky_number:1}} , {multi: true});
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+
+- Agrega un campo 'updated_on' y establece el valor como la fecha actual.
+
+db.estudiantes.updateMany({},{$set:{update_on: new Date()}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
