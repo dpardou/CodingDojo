@@ -1,0 +1,213 @@
+- Cree una base de datos llamada 'mascotas'.
+
+use mascotas
+
+
+- Crear colección de mascotas.
+
+db.createCollection("mascotas")
+
+
+1- Ingresar al menos 3 mascotas
+
+db.mascotas.insert({name: "Boster", tipo: "Perro", color: "Rubio"})
+db.mascotas.insert({name: "Frida", tipo: "Perro", color: "Negro"})
+db.mascotas.insert({name: "Tita", tipo: "Gato", color: "Blanco"})
+db.mascotas.insert({name: "Marco", tipo: "Gato", color: "Gris"})
+
+> db.mascotas.find().pretty()
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a8"),
+	"name" : "Boster",
+	"tipo" : "Perro",
+	"color" : "Rubio"
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a9"),
+	"name" : "Frida",
+	"tipo" : "Perro",
+	"color" : "Negro"
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444aa"),
+	"name" : "Tita",
+	"tipo" : "Gato",
+	"color" : "Blanco"
+}
+{
+	"_id" : ObjectId("618da3d8564ffa6c8e8444ab"),
+	"name" : "Marco",
+	"tipo" : "Gato",
+	"color" : "Gris"
+}
+
+
+2- Eliminar una mascota
+db.mascotas.remove({"_id" : ObjectId("618da3d8564ffa6c8e8444ab")})
+
+
+3.- Agregar diferentes edades a las mascotas
+db.mascotas.updateMany({},{$set:{edad: 0}})
+db.mascotas.update({"_id" : ObjectId("618da3d6564ffa6c8e8444a8")},{$set:{edad: 7}})
+db.mascotas.update({"_id" : ObjectId("618da3d6564ffa6c8e8444a9")},{$set:{edad: 8}})
+db.mascotas.update({"_id" : ObjectId("618da3d6564ffa6c8e8444aa")},{$set:{edad: 2}})
+db.mascotas.update({"_id" : ObjectId("618da630564ffa6c8e8444ac")},{$set:{edad: 1}})
+db.mascotas.update({"_id" : ObjectId("618da631564ffa6c8e8444ad")},{$set:{edad: 15}})
+
+> db.mascotas.find().pretty()
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a8"),
+	"name" : "Boster",
+	"tipo" : "Perro",
+	"color" : "Rubio",
+	"edad" : 7
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a9"),
+	"name" : "Frida",
+	"tipo" : "Perro",
+	"color" : "Negro",
+	"edad" : 8
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444aa"),
+	"name" : "Tita",
+	"tipo" : "Gato",
+	"color" : "Blanco",
+	"edad" : 2
+}
+{
+	"_id" : ObjectId("618da630564ffa6c8e8444ac"),
+	"name" : "Jerry",
+	"tipo" : "Ratón",
+	"color" : "Café",
+	"edad" : 1
+}
+{
+	"_id" : ObjectId("618da631564ffa6c8e8444ad"),
+	"name" : "Tom",
+	"tipo" : "Gato",
+	"color" : "Gris",
+	"edad" : 15
+}
+
+
+4.- Agregar un par de mascotas mas
+
+db.mascotas.insert({name: "Jerry", tipo: "Ratón", color: "Café"})
+db.mascotas.insert({name: "Tom", tipo: "Gato", color: "Gris"})
+
+> db.mascotas.find().pretty()
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a8"),
+	"name" : "Boster",
+	"tipo" : "Perro",
+	"color" : "Rubio",
+	"edad" : 0
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a9"),
+	"name" : "Frida",
+	"tipo" : "Perro",
+	"color" : "Negro",
+	"edad" : 0
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444aa"),
+	"name" : "Tita",
+	"tipo" : "Gato",
+	"color" : "Blanco",
+	"edad" : 0
+}
+{
+	"_id" : ObjectId("618da630564ffa6c8e8444ac"),
+	"name" : "Jerry",
+	"tipo" : "Ratón",
+	"color" : "Café"
+}
+{
+	"_id" : ObjectId("618da631564ffa6c8e8444ad"),
+	"name" : "Tom",
+	"tipo" : "Gato",
+	"color" : "Gris"
+}
+
+5- Listar las mascotas ordenadas por edad descendente
+
+db.mascotas.find().sort({edad:-1})
+{ "_id" : ObjectId("618da631564ffa6c8e8444ad"), "name" : "Tom", "tipo" : "Gato", "color" : "Gris", "edad" : 15 }
+{ "_id" : ObjectId("618da3d6564ffa6c8e8444a9"), "name" : "Frida", "tipo" : "Perro", "color" : "Negro", "edad" : 8 }
+{ "_id" : ObjectId("618da3d6564ffa6c8e8444a8"), "name" : "Boster", "tipo" : "Perro", "color" : "Rubio", "edad" : 7 }
+{ "_id" : ObjectId("618da3d6564ffa6c8e8444aa"), "name" : "Tita", "tipo" : "Gato", "color" : "Blanco", "edad" : 2 }
+{ "_id" : ObjectId("618da630564ffa6c8e8444ac"), "name" : "Jerry", "tipo" : "Ratón", "color" : "Café", "edad" : 1 }
+
+6.- Agregar un arreglo de jugetes a las mascotas, cada mascota debe tener al menos un juguete igual y otro único
+
+db.mascotas.updateMany({},{$set:{juguetes: ["pelota", "peluche"]}})
+> db.mascotas.find().pretty()
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a8"),
+	"name" : "Boster",
+	"tipo" : "Perro",
+	"color" : "Rubio",
+	"edad" : 7,
+	"juguetes" : [
+		"pelota",
+		"peluche"
+	]
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444a9"),
+	"name" : "Frida",
+	"tipo" : "Perro",
+	"color" : "Negro",
+	"edad" : 8,
+	"juguetes" : [
+		"pelota",
+		"peluche"
+	]
+}
+{
+	"_id" : ObjectId("618da3d6564ffa6c8e8444aa"),
+	"name" : "Tita",
+	"tipo" : "Gato",
+	"color" : "Blanco",
+	"edad" : 2,
+	"juguetes" : [
+		"pelota",
+		"peluche"
+	]
+}
+{
+	"_id" : ObjectId("618da630564ffa6c8e8444ac"),
+	"name" : "Jerry",
+	"tipo" : "Ratón",
+	"color" : "Café",
+	"edad" : 1,
+	"juguetes" : [
+		"pelota",
+		"peluche"
+	]
+}
+{
+	"_id" : ObjectId("618da631564ffa6c8e8444ad"),
+	"name" : "Tom",
+	"tipo" : "Gato",
+	"color" : "Gris",
+	"edad" : 15,
+	"juguetes" : [
+		"pelota",
+		"peluche"
+	]
+}
+
+db.mascotas.update({"_id" : ObjectId("618da3d6564ffa6c8e8444a8")},{$set:{juguetes: ["pelota","peluche","disco"]}})
+db.mascotas.update({"_id" : ObjectId("618da3d6564ffa6c8e8444a9")},{$set:{juguetes: ["pelota","peluche","hueso"]}})
+db.mascotas.update({"_id" : ObjectId("618da3d6564ffa6c8e8444aa")},{$set:{juguetes: ["pelota","peluche","cascabel"]}})
+db.mascotas.update({"_id" : ObjectId("618da630564ffa6c8e8444ac")},{$set:{juguetes: ["pelota","peluche","queso"]}})
+db.mascotas.update({"_id" : ObjectId("618da631564ffa6c8e8444ad")},{$set:{juguetes: ["pelota","peluche","ratón"]}})
+
+7.- Listar todas las mascotas que tengas mas de 5 años
+
+db.mascotas.find({edad:{$gt:5}}).pretty()
+

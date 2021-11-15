@@ -1,0 +1,24 @@
+{
+  "name": "chistes",
+  "version": "1.0.0",
+  "description": "Ejercicio API FALSA para bootcampo MERN CodingDojo",
+  "main": "./server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpardou/CodingDojo.git"
+  },
+  "author": "David Pardo Urrutia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dpardou/CodingDojo/issues"
+  },
+  "homepage": "https://github.com/dpardou/CodingDojo#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "nodemon": "^2.0.15"
+  }
+}
