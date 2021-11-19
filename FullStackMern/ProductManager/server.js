@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-require('./server/routes/person.route')(app);
+require('./server/routes/product.route')(app);
 
 app.listen(port, () => {
     console.log(`Listening at Port ${port}`);
