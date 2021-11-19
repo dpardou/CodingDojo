@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ProductForms from '../components/ProductForms';
 import ProductList from '../components/ProductList';
-import { Link } from '@reach/router';
+
 
 
 const Main = () =>{
@@ -16,12 +16,16 @@ const Main = () =>{
         });
     }, []);
     
+    const removeFromDom = productId => {
+        setProduct(product.filter(product => product._id !== productId));
+    }
+
     return (
         <div>
             <ProductForms/>
             <hr/>
             <h1>All Products: </h1>
-            {loaded && <ProductList product={product}/>}
+            {loaded && <ProductList product={product} removeFromDom={removeFromDom}/>}
         </div>
     )
 }
