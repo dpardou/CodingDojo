@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const contactSchema = new mongoose.Schema({
+const ContactSchema = new mongoose.Schema({
     name: {
 		type: String,
 		required: [true, "El campo NAME es requerido"]
@@ -22,6 +22,6 @@ const contactSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 
-const Contact = mongoose.model("Contact", contactSchema, "contacts");
+const Contact = mongoose.model("Contact", ContactSchema);
 
 module.exports = Contact;

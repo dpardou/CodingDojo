@@ -1,61 +1,53 @@
-const Contact = require("../models/contact.model");
+const Contact = require('../models/contact.model');
 
-//Crear un nuevo documento
 module.exports.create = (req, res) => {
-  Contact.create(req.body)
-    .then(newDocument => res.status(200).json({ok: true, message: "Contacto creado correctamente", contact: newDocument }))
-    .catch(err => {
-      console.log("CREATE DOCUMENT", err);
-      if ( err.name === "ValidationError") {
-        res.status(500).json({ok: false, message: err.message, error: err})
-      } else {
-        res.status(500).json({ok: false, message: "Ha ocurrido un problema al crear el Documento"})
-      }
+    Contact.create(req.body)
+    .then(data => res.json({ ok: true, message: 'Se agregó el contacto', data: data }))
+    .catch(error => {
+        if(error.name == 'ValidationError')
+            res.status(500).json({ ok: false, message: error.message, error: error });
+        else {
+            res.status(500).json({ok: false, message: 'Error al guardar el contacto'})    
+        }
     });
 }
 
-//Actualizar un Documento
-module.exports.update = (req, res) => {
-	Contact.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
-		.then(updateContact => res.status(200).json({ok: true, message: "Documento actualizado correctamente", contact: updateContact }))
-		.catch(err => {
-      console.log("UPDATE PROFILE", err);
-      if ( error.name === "ValidationError ") {
-        res.status(500).json({ok: false, message: err.message, error: err})
-      } else {
-        res.status(500).json({ok: false, message: "Ha ocurrido un problema al actualizar el Documento"})
-      }
-    });
+module.exports.edit = (req, resp) => {
+    const contact = req.body;
+    Contact.findOneAndUpdate({_id: req.params.id }, contact)
+        .then(data => resp.status(200).json({ ok: true, message: 'Se actualizó el contacto', data: contact}))
+        .catch(error => {
+            if(error.name === 'ValidationError'){
+                resp.status(500).json({ok: false, message: error.message, error: error})
+            } else{ 
+                resp.status(500).json({ok: false, message: 'Error al guardar el contacto'})    
+            }
+        });
 }
 
-
-//Buscar un Documento específico por _ID
 module.exports.get = (req, res) => {
-	Contact.findById({_id: req.params.id })
-		.then(findOneSingleDocument => res.status(200).json({ok: true, message: "Documento encontrado", contact: findOneSingleDocument }))
-		.catch(err => {
-      console.log("FIND ONE SINGLE DOCUMENT", err);
-      res.status(500).json({ok: false, message: "Ha ocurrido un problema al obtener el Documento"})
-    });
+    Contact.findById(req.params.id)
+        .then(data => res.status(200).json({ ok: true, message: 'Contacto', data: data}))
+        .catch(error => {
+            console.log('GET', error);
+            res.status(500).json({ok: false, message: 'Error al obtener el contacto'})
+        });
 }
 
-
-//Buscar todos los Documentos
-module.exports.getAll = (req, res) => {
-	Contact.find()
-		.then(findAllDocument => res.status(200).json({ok: true, message: "Listado de Documentos encontrado", contacts: findAllDocument }))
-		.catch(err => {
-      console.log("FIND LIST DOCUMENT", err);
-      res.status(500).json({ok: false, message: "Ha ocurrido un problema al obtener el listado de Documentos"})
-    });
+module.exports.list = (req, res) => {
+    Contact.find()
+        .then(data => res.status(200).json({ ok: true, message: 'Contactos', data: data}))
+        .catch(error => {
+            console.log('LIST', error);
+            res.status(500).json({ok: false, message: 'Error al obtener los contactos'})
+        });
 }
 
-//Eliminar un Documento
-module.exports.delete = (req, res) => {
-	Contact.deleteOne({ _id: req.params.id })
-		.then(deleteDocument => res.status(200).json({ok: true, message: "Documento eliminado correctamente", contact: deleteDocument }))
-		.catch(err => {
-      console.log("DELETE DOCUMENT", err);
-      res.status(500).json({ok: false, message: "Ha ocurrido un problema al eliminar el Documento"})
-    });
+module.exports.del = (req, res) => {
+    Contact.findByIdAndRemove(req.params.id)
+        .then(data => res.status(200).json({ ok: true, message: 'Se eliminó  el contacto', data: data}))
+        .catch(error => {
+            console.log('DELETE', error);
+            res.status(500).json({ok: false, message: 'Error al eliminar el contacto'})
+        });
 }

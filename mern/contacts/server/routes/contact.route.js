@@ -1,9 +1,10 @@
-const ContactController = require("../controllers/contact.controller");
+const ContactController = require('../controllers/contact.controller');
+const { authenticate } = require('../config/jwt.config');
 
 module.exports = app => {
-  app.get("/api/contact/", ContactController.getAll);
-  app.get("/api/contact/:id", ContactController.get);
-  app.put("/api/contact/update/:id", ContactController.update);
-  app.post("/api/contact/new", ContactController.create);
-  app.delete("/api/contact/delete/:id", ContactController.delete);
-};
+    app.get('/api/contact', authenticate, ContactController.list);
+    app.get('/api/contact/:id', authenticate, ContactController.get);
+    app.post('/api/contact', authenticate, ContactController.create);
+    app.put('/api/contact/:id', authenticate, ContactController.edit);
+    app.delete('/api/contact/:id', authenticate, ContactController.del);
+}
